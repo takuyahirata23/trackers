@@ -13,7 +13,11 @@ module.exports = {
     },
     extend: {
       colors: {
-        brand: "#FD4F00",
+        "bg-primary": "	#030812",
+        "bg-secondary": "#1c2a3b",
+        contrast: "#ffffff",
+        "accent-dark": "#b1a5ee",
+        "accent-light": "#a6e22e",
       },
     },
   },
