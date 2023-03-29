@@ -7,17 +7,7 @@ defmodule TrackersWeb.UserRegistrationLive do
   def render(assigns) do
     ~H"""
     <div class="mx-auto max-w-sm">
-      <.header class="text-center">
-        Register for an account
-        <:subtitle>
-          Already registered?
-          <.link navigate={~p"/users/log_in"} class="font-semibold text-brand hover:underline">
-            Sign in
-          </.link>
-          to your account now.
-        </:subtitle>
-      </.header>
-
+      <h2 class="text-xl font-bold text-center">Create an account to manage your bikes</h2>
       <.simple_form
         for={@form}
         id="registration_form"
