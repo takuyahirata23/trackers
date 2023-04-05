@@ -269,4 +269,45 @@ defmodule TrackersWeb.UserAuthTest do
       refute conn.status
     end
   end
+
+  describe "on_mount: ensure_admin" do
+    test "authenticates current_user based on a valid user_token ", %{conn: conn} do
+      user = admin_fixture()
+
+      user_token = Accounts.generate_user_session_token(user)
+      session = conn |> put_session(:user_token, user_token) |> get_session()
+
+      {:cont, updated_socket} =
+        UserAuth.on_mount(:ensure_authenticated, %{}, session, %LiveView.Socket{})
+
+      assert updated_socket.assigns.current_user.id == user.id
+    end
+
+    test "raise an error when is_admin evaluates to false", %{conn: conn, user: user} do
+      user_token = Accounts.generate_user_session_token(user)
+      session = conn |> put_session(:user_token, user_token) |> get_session()
+
+      socket = %LiveView.Socket{
+        endpoint: TrackersWeb.Endpoint,
+        assigns: %{__changed__: %{}, flash: %{}}
+      }
+
+      {:halt, updated_socket} = UserAuth.on_mount(:ensure_admin, %{}, session, socket)
+      assert %{"error" => "Admin only contents"} = updated_socket.assigns.flash
+    end
+
+    test "not raise an error when is_admin evaluates to false", %{conn: conn} do
+      user = admin_fixture()
+      user_token = Accounts.generate_user_session_token(user)
+      session = conn |> put_session(:user_token, user_token) |> get_session()
+
+      socket = %LiveView.Socket{
+        endpoint: TrackersWeb.Endpoint,
+        assigns: %{__changed__: %{}, flash: %{}}
+      }
+
+      {:cont, updated_socket} = UserAuth.on_mount(:ensure_admin, %{}, session, socket)
+      assert %{} = updated_socket.assigns.flash
+    end
+  end
 end

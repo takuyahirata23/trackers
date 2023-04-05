@@ -27,6 +27,21 @@ defmodule Trackers.AccountsFixtures do
     user
   end
 
+  def admin_fixture(attrs \\ %{}) do
+    {:ok, admin} =
+      attrs
+      |> Enum.into(%{
+        email: unique_user_email(),
+        password: valid_user_password(),
+        name: unique_user_name(),
+        username: unique_user_username(),
+        is_admin: true
+      })
+      |> Trackers.Accounts.register_user()
+
+    admin
+  end
+
   def extract_user_token(fun) do
     {:ok, captured_email} = fun.(&"[TOKEN]#{&1}[TOKEN]")
     [_, token | _] = String.split(captured_email.text_body, "[TOKEN]")
