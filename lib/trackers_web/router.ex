@@ -82,4 +82,17 @@ defmodule TrackersWeb.Router do
       live "/users/confirm", UserConfirmationInstructionsLive, :new
     end
   end
+
+  scope "/", TrackersWeb do
+    pipe_through [:browser, :require_authenticated_user, :require_admin_user]
+
+    live_session :admin,
+      layout: {TrackersWeb.Layouts, :admin},
+      on_mount: [
+        {TrackersWeb.UserAuth, :ensure_authenticated},
+        {TrackersWeb.UserAuth, :ensure_admin}
+      ] do
+      live "/admin/motorcycles", Admin.Motorcycles
+    end
+  end
 end

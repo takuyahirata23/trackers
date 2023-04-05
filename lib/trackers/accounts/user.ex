@@ -9,7 +9,7 @@ defmodule Trackers.Accounts.User do
     field :email, :string
     field :password, :string, virtual: true, redact: true
     field :hashed_password, :string, redact: true
-    field :is_admin, :boolean
+    field :is_admin, :boolean, default: false
     field :confirmed_at, :naive_datetime
 
     timestamps()
@@ -17,7 +17,7 @@ defmodule Trackers.Accounts.User do
 
   def registration_changeset(user, attrs, opts \\ []) do
     user
-    |> cast(attrs, [:name, :username, :email, :password])
+    |> cast(attrs, [:name, :username, :email, :password, :is_admin])
     |> validate_name()
     |> validate_username()
     |> validate_email(opts)
