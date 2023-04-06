@@ -3,10 +3,11 @@ defmodule TrackersWeb.Admin.Motorcycles do
 
   alias Trackers.Motorcycles.Make
   alias Trackers.Motorcycles
+  alias TrackersWeb.Card
 
   def render(assigns) do
     ~H"""
-    <div>
+    <Card.primary title="Register make">
       <.simple_form for={@form} phx-submit="register-make">
         <.input field={@form[:name]} type="text" label="Name" required />
         <:actions>
@@ -15,7 +16,7 @@ defmodule TrackersWeb.Admin.Motorcycles do
           </.button>
         </:actions>
       </.simple_form>
-    </div>
+    </Card.primary>
     """
   end
 
