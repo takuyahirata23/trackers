@@ -3,3 +3,15 @@
 @import "tailwindcss/utilities";
 
 /* This file is for your main application CSS */
+
+:root {
+  --header-height: 72px;
+}
+
+#backdrop {
+  top: var(--header-height);
+}
+
+#mobile-navigation {
+  top: var(--header-height);
+}
