@@ -21,6 +21,7 @@ defmodule Trackers.Tracks.Layout do
     |> validate_required([:name, :length])
     |> validate_length(:name, min: 2, max: 50)
     |> validate_length(:description, max: 200)
+    |> validate_number(:length, greater_than: 1)
     |> unique_constraint([:name, :track_id])
   end
 end
