@@ -80,9 +80,11 @@ defmodule TrackersWeb.Router do
       on_mount: [{TrackersWeb.UserAuth, :mount_current_user}] do
       live "/users/confirm/:token", UserConfirmationLive, :edit
       live "/users/confirm", UserConfirmationInstructionsLive, :new
+      live "/users/dashboard", UserDashboardLive
     end
   end
 
+  # Admin routes
   scope "/", TrackersWeb do
     pipe_through [:browser, :require_authenticated_user, :require_admin_user]
 
