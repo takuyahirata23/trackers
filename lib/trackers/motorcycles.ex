@@ -6,7 +6,7 @@ defmodule Trackers.Motorcycles do
   import Ecto.Query, warn: false
 
   alias Trackers.Repo
-  alias Trackers.Motorcycles.{Make, Model}
+  alias Trackers.Motorcycles.{Make, Model, Motorcycle}
 
   def register_make(attrs) do
     %Make{}
@@ -21,6 +21,12 @@ defmodule Trackers.Motorcycles do
     |> Repo.all()
   end
 
+  def list_models_for_select(make_id) when is_binary(make_id) do
+    Repo.all(
+      from m in Model, where: m.make_id == ^make_id, select: {m.name, m.id}, order_by: m.name
+    )
+  end
+
   def register_model(attrs) do
     %Model{}
     |> Model.changeset(attrs)
@@ -32,5 +38,18 @@ defmodule Trackers.Motorcycles do
     |> preload(:models)
     |> order_by(asc: :name)
     |> Repo.all()
+  end
+
+  def register_motorcycle(attrs) do
+    case %Motorcycle{}
+         |> Motorcycle.changeset(attrs)
+         |> Repo.insert() do
+      {:ok, motorcycle} -> {:ok, Repo.preload(motorcycle, [:make, :model])}
+      error -> error
+    end
+  end
+
+  def list_user_motorcycles(user_id) when is_binary(user_id) do
+    Repo.all(from m in Motorcycle, where: m.user_id == ^user_id, preload: [:make, :model])
   end
 end
