@@ -82,6 +82,7 @@ defmodule TrackersWeb.Router do
       live "/users/confirm", UserConfirmationInstructionsLive, :new
       live "/users/dashboard", UserDashboardLive
       live "/users/motorcycles", UserMotorcyclesLive
+      live "/users/motorcycles/:id", UserMotorcycleDetailLive
     end
   end
 
