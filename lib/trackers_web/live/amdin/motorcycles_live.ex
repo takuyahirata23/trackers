@@ -1,4 +1,4 @@
-defmodule TrackersWeb.Admin.Motorcycles do
+defmodule TrackersWeb.Admin.MotorcyclesLive do
   use TrackersWeb, :live_view
 
   alias Trackers.Motorcycles
