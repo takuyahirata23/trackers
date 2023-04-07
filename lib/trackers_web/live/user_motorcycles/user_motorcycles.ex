@@ -14,7 +14,9 @@ defmodule TrackersWeb.UserMotorcyclesLive do
         </p>
         <ul id="motorcycles" phx-update="stream">
           <li :for={{dom_id, motorcycle} <- @streams.motorcycles} id={dom_id}>
-            <%= "#{motorcycle.make.name} #{motorcycle.model.name} #{motorcycle.year}" %>
+            <.link navigate={~p"/users/motorcycles/#{motorcycle.id}"}>
+              <%= "#{motorcycle.make.name} #{motorcycle.model.name} #{motorcycle.year}" %>
+            </.link>
           </li>
         </ul>
       </Card.primary>

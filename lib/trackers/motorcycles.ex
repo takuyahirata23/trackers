@@ -52,4 +52,13 @@ defmodule Trackers.Motorcycles do
   def list_user_motorcycles(user_id) when is_binary(user_id) do
     Repo.all(from m in Motorcycle, where: m.user_id == ^user_id, preload: [:make, :model])
   end
+
+  def get_user_motorcycle(user_id, motorcycle_id)
+      when is_binary(user_id) and is_binary(motorcycle_id) do
+    Repo.one(
+      from m in Motorcycle,
+        where: m.user_id == ^user_id and m.id == ^motorcycle_id,
+        preload: [:make, :model]
+    )
+  end
 end
