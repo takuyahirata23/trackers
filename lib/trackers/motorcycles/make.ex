@@ -8,6 +8,8 @@ defmodule Trackers.Motorcycles.Make do
   schema "makes" do
     field :name, :string
 
+    has_many :models, Trackers.Motorcycles.Model
+
     timestamps()
   end
 

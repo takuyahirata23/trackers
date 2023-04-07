@@ -19,6 +19,9 @@ module.exports = {
         "accent-dark": "#b1a5ee",
         "accent-light": "#a6e22e",
       },
+      dropShadow: {
+        md: "5px 5px 10px rgba(100, 100, 100, 0.25)",
+      },
     },
   },
   plugins: [
