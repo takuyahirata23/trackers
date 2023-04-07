@@ -96,7 +96,8 @@ defmodule TrackersWeb.Router do
         {TrackersWeb.UserAuth, :ensure_authenticated},
         {TrackersWeb.UserAuth, :ensure_admin}
       ] do
-      live "/admin/motorcycles", Admin.Motorcycles
+      live "/admin/motorcycles", Admin.MotorcyclesLive
+      live "/admin/tracks", Admin.TracksLive
     end
   end
 end
