@@ -14,9 +14,17 @@ defmodule Trackers.Tracks do
     |> Repo.insert()
   end
 
-  def register_track_layout(attrs) do
+  def list_tracks_for_select do
+    Repo.all(from t in Track, select: {t.name, t.id}, order_by: t.name)
+  end
+
+  def register_layout(attrs) do
     %Layout{}
-    |> Track.changeset(attrs)
+    |> Layout.changeset(attrs)
     |> Repo.insert()
+  end
+
+  def list_registered_tracks do
+    Repo.all(from t in Track, preload: [:layouts], order_by: [t.name])
   end
 end
