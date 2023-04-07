@@ -81,6 +81,7 @@ defmodule TrackersWeb.Router do
       live "/users/confirm/:token", UserConfirmationLive, :edit
       live "/users/confirm", UserConfirmationInstructionsLive, :new
       live "/users/dashboard", UserDashboardLive
+      live "/users/motorcycles", UserMotorcyclesLive
     end
   end
 

@@ -1,5 +1,6 @@
 defmodule TrackersWeb.Header do
   use Phoenix.Component
+  use TrackersWeb, :verified_routes
 
   alias Phoenix.LiveView.JS
 
@@ -15,12 +16,13 @@ defmodule TrackersWeb.Header do
           <Heroicons.Outline.x class="w-6 h-6" />
         </button>
       </div>
-      <div id="backdrop" class="fixed h-screen inset-x-0 bg-bg-secondary opacity-50 hidden"></div>
+      <div id="backdrop" class="z-10 fixed h-screen inset-x-0 bg-bg-secondary opacity-50 hidden">
+      </div>
       <nav
         id="mobile-navigation"
-        class="z-20 fixed bg-bg-secondary h-screen right-0 pointer-events-none drop-shadow-md hidden w-2/3 p-8"
+        class="z-20 fixed bg-bg-secondary h-screen right-0  drop-shadow-md hidden w-2/3 p-8"
       >
-        <div>here</div>
+        <.link navigate={~p"/users/motorcycles"}>Motorcycles</.link>
       </nav>
     </header>
     """
