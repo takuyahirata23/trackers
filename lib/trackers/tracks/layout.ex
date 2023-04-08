@@ -12,6 +12,8 @@ defmodule Trackers.Tracks.Layout do
 
     belongs_to :track, Trackers.Tracks.Track
 
+    has_many :lap_times, Trackers.Laps.LapTime
+
     timestamps()
   end
 

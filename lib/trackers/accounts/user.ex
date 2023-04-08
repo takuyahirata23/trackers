@@ -12,6 +12,9 @@ defmodule Trackers.Accounts.User do
     field :is_admin, :boolean, default: false
     field :confirmed_at, :naive_datetime
 
+    has_many :motorcycles, Trackers.Motorcycles.Motorcycle
+    has_many :lap_times, Trackers.Laps.LapTime
+
     timestamps()
   end
 
