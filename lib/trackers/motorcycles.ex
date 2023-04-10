@@ -49,6 +49,15 @@ defmodule Trackers.Motorcycles do
     end
   end
 
+  def list_user_motorcycles_for_select(user_id) when is_binary(user_id) do
+    Motorcycle
+    |> where([m], m.user_id == ^user_id)
+    |> join(:inner, [m], ma in Make, on: ma.id == m.make_id)
+    |> join(:inner, [m, ma], mo in Model, on: mo.id == m.model_id)
+    |> select([m, ma, mo], {mo.name, m.id})
+    |> Repo.all()
+  end
+
   def list_user_motorcycles(user_id) when is_binary(user_id) do
     Repo.all(from m in Motorcycle, where: m.user_id == ^user_id, preload: [:make, :model])
   end

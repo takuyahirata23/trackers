@@ -27,4 +27,20 @@ defmodule Trackers.Tracks do
   def list_registered_tracks do
     Repo.all(from t in Track, preload: [:layouts], order_by: [t.name])
   end
+
+  def get_registered_track(track_id) when is_binary(track_id) do
+    Repo.get_by(Track, id: track_id)
+  end
+
+  def get_layouts_by_track_id(track_id) when is_binary(track_id) do
+    Repo.all(from l in Layout, where: l.track_id == ^track_id)
+  end
+
+  # def get_layouts_by_track_id(track_id) when is_binary(track_id) do
+  #   Repo.all(from l in Layout, where: l.track_id == ^track_id, preload: [:fast_laps])
+  # end
+
+  def get_layout_by_id(id) when is_binary(id) do
+    Repo.one(from l in Layout, where: l.id == ^id)
+  end
 end

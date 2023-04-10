@@ -1,10 +1,10 @@
-defmodule Trackers.Laps.LapTime do
+defmodule Trackers.Laps.FastLap do
   use Ecto.Schema
   import Ecto.Changeset
   @primary_key {:id, :binary_id, autogenerate: true}
   @foreign_key_type :binary_id
 
-  schema "lap_times" do
+  schema "fast_lap" do
     field :lap_time, :integer
     field :date, :date
 
@@ -15,10 +15,11 @@ defmodule Trackers.Laps.LapTime do
     timestamps()
   end
 
-  def changeset(lap_time, attrs \\ %{}) do
-    lap_time
+  def changeset(fast_lap_time_a_day, attrs \\ %{}) do
+    fast_lap_time_a_day
     |> cast(attrs, [:lap_time, :date, :user_id, :motorcycle_id, :layout_id])
     |> validate_required([:lap_time, :date, :user_id, :motorcycle_id, :layout_id])
-    |> validate_number(:lap_time, less_than_or_equals_to: 300_000)
+    |> validate_number(:lap_time, less_than_or_equal_to: 300_000)
+    |> unique_constraint([:user_id, :date, :motorcycle_id, :layout_id])
   end
 end
