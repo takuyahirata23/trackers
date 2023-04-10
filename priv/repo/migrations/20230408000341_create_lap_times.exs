@@ -2,7 +2,7 @@ defmodule Trackers.Repo.Migrations.CreateLapTimes do
   use Ecto.Migration
 
   def change do
-    create table(:lap_times, primary_key: false) do
+    create table(:fast_lap, primary_key: false) do
       add :id, :binary_id, primary_key: true
       add :lap_time, :integer, null: false
       add :date, :date, null: false
@@ -15,7 +15,8 @@ defmodule Trackers.Repo.Migrations.CreateLapTimes do
       timestamps()
     end
 
-    create(index(:lap_times, [:layout_id]))
-    create(index(:lap_times, [:user_id]))
+    create(index(:fast_lap, [:layout_id]))
+    create(index(:fast_lap, [:user_id]))
+    create(unique_index(:fast_lap, [:user_id, :date, :motorcycle_id, :layout_id]))
   end
 end

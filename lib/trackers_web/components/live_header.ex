@@ -8,7 +8,7 @@ defmodule TrackersWeb.Header do
     ~H"""
     <header class="py-4 bg-bg-secondary">
       <div class="max-w-7xl w-11/12 mx-auto flex justify-between items-center">
-        <h1 class="font-bold text-xl">Tracker Admin</h1>
+        <h1 class="font-bold text-xl">Tracker</h1>
         <button phx-click={toggle_mobile_menu()} id="open" class="block p-2">
           <Heroicons.Outline.menu class="w-6 h-6" />
         </button>
@@ -22,7 +22,14 @@ defmodule TrackersWeb.Header do
         id="mobile-navigation"
         class="z-20 fixed bg-bg-secondary h-screen right-0  drop-shadow-md hidden w-2/3 p-8"
       >
-        <.link navigate={~p"/users/motorcycles"}>Motorcycles</.link>
+        <ul class="flex flex-col gap-y-4">
+          <li>
+            <.link navigate={~p"/users/motorcycles"}>Motorcycles</.link>
+          </li>
+          <li>
+            <.link navigate={~p"/tracks"}>Tracks</.link>
+          </li>
+        </ul>
       </nav>
     </header>
     """

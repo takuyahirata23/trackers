@@ -3,6 +3,7 @@ defmodule Trackers.Accounts.User do
   import Ecto.Changeset
   @primary_key {:id, :binary_id, autogenerate: true}
   @foreign_key_type :binary_id
+
   schema "users" do
     field :name, :string
     field :username, :string
@@ -13,7 +14,7 @@ defmodule Trackers.Accounts.User do
     field :confirmed_at, :naive_datetime
 
     has_many :motorcycles, Trackers.Motorcycles.Motorcycle
-    has_many :lap_times, Trackers.Laps.LapTime
+    has_many :lap_times, Trackers.Laps.FastLapTimeADay
 
     timestamps()
   end
