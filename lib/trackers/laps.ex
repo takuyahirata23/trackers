@@ -18,8 +18,7 @@ defmodule Trackers.Laps do
   def list_fast_laps_for_layout(layout_id) when is_binary(layout_id) do
     Repo.all(
       from f in FastLap,
-        where: f.layout_id == ^layout_id,
-        select: %{f | lap_time: ^Time.convert_milliseconds_to_lap_time(f.lap_time)}
+        where: f.layout_id == ^layout_id
     )
   end
 end
