@@ -4,7 +4,7 @@ defmodule Trackers.Motorcycles.Motorcycle do
 
   alias Trackers.Accounts.User
   alias Trackers.Motorcycles.{Make, Model}
-  alias Trackers.Laps.FastLapTimeADay
+  alias Trackers.Laps.FastLap
 
   @primary_key {:id, :binary_id, autogenerate: true}
   @foreign_key_type :binary_id
@@ -16,7 +16,7 @@ defmodule Trackers.Motorcycles.Motorcycle do
     belongs_to :make, Make
     belongs_to :model, Model
 
-    has_many :lap_times, FastLapTimeADay
+    has_many :lap_times, FastLap
 
     timestamps()
   end

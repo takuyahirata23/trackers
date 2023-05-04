@@ -54,11 +54,11 @@ defmodule TrackersWeb.LayoutLive do
           </:actions>
         </.simple_form>
       </Card.primary>
-      <Card.primary :if={!Enum.empty?(@fast_laps)}>
+      <Card.primary :if={!Enum.empty?(@fast_laps)} title="Lap Times">
         <ol class="flex flex-col gap-y-4 mt-6">
           <li :for={fast_lap <- @fast_laps} class="flex gap-x-2">
             <div>
-              <%= "#{fast_lap.lap_time}" %>
+              <%= "#{Time.convert_milliseconds_to_lap_time(fast_lap.lap_time)}" %>
             </div>
             <div>
               <%= "#{fast_lap.date}" %>
