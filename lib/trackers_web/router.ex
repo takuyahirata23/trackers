@@ -85,6 +85,7 @@ defmodule TrackersWeb.Router do
       live "/users/motorcycles/:id", UserMotorcycleDetailLive
       live "/users/trackdays", UserTrackdaysLive
       live "/users/trackdays/new", UserTrackdaysNewLive, :new
+      live "/users/trackdays/:id", UserTrackdayDetailLive
       live "/tracks", TracksLive
       live "/tracks/:id", TrackDetailLive
       live "/tracks/:id/:layout_id", LayoutLive
