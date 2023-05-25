@@ -10,13 +10,15 @@ defmodule TrackersWeb.UserTrackdaysLive do
       <h2 class="font-bold text-xl">Trackdays</h2>
       <ul :for={trackday <- @trackdays}>
         <li>
-          <Card.primary class="flex justify-between">
-            <span>
-              <%= "#{trackday.layout.name}" %>
-            </span>
-            <span>
-              <%= "#{trackday.date}" %>
-            </span>
+          <Card.primary>
+            <.link navigate={~p"/users/trackdays/#{trackday.id}"} class="flex justify-between">
+              <span>
+                <%= "#{trackday.layout.name}" %>
+              </span>
+              <span>
+                <%= "#{trackday.date}" %>
+              </span>
+            </.link>
           </Card.primary>
         </li>
       </ul>

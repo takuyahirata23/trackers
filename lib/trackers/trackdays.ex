@@ -14,6 +14,11 @@ defmodule Trackers.Trackdays do
     |> Repo.insert()
   end
 
+  def get_trackday_by_id(id) when is_binary(id) do
+    Repo.get_by(Trackday, id: id)
+    |> Repo.preload(layout: :track, motorcycle: :make, motorcycle: :model)
+  end
+
   def list_all_trackdays(user_id) when is_binary(user_id) do
     Repo.all(from t in Trackday, where: t.user_id == ^user_id, preload: [:layout])
   end
