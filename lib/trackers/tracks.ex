@@ -18,6 +18,10 @@ defmodule Trackers.Tracks do
     Repo.all(from t in Track, select: {t.name, t.id}, order_by: t.name)
   end
 
+  def list_layouts_for_select do
+    Repo.all(from t in Layout, select: {t.name, t.id}, order_by: t.name)
+  end
+
   def register_layout(attrs) do
     %Layout{}
     |> Layout.changeset(attrs)
