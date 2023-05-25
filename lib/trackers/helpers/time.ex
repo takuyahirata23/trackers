@@ -4,7 +4,7 @@ defmodule Trackers.Helpers.Time do
         "seconds" => seconds,
         "milliseconds" => milliseconds
       }) do
-    :timer.minutes(minutes) + :timer.seconds(seconds) + milliseconds
+    :timer.minutes(minutes) + :timer.seconds(seconds) + milliseconds * 10
   end
 
   def convert_milliseconds_to_lap_time(lap_time_in_milliseconds) do
