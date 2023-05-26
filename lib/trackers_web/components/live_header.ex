@@ -24,10 +24,19 @@ defmodule TrackersWeb.Header do
       >
         <ul class="flex flex-col gap-y-4">
           <li>
+            <.link navigate={~p"/users/dashboard"}>Dashboard</.link>
+          </li>
+          <li>
             <.link navigate={~p"/users/motorcycles"}>Motorcycles</.link>
           </li>
           <li>
+            <.link navigate={~p"/users/trackdays"}>Trackdays</.link>
+          </li>
+          <li>
             <.link navigate={~p"/tracks"}>Tracks</.link>
+          </li>
+          <li>
+            <.link navigate={~p"/"}>Home</.link>
           </li>
         </ul>
       </nav>
