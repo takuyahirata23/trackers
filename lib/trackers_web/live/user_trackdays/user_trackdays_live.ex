@@ -7,8 +7,13 @@ defmodule TrackersWeb.UserTrackdaysLive do
   def render(assigns) do
     ~H"""
     <div>
-      <h2 class="font-bold text-xl">Trackdays</h2>
-      <ul :for={trackday <- @trackdays}>
+      <div class="flex justify-between">
+        <h2 class="font-bold text-xl">Trackdays</h2>
+        <.link navigate={~p"/users/trackdays/new"} class="block p-2">
+          <Heroicons.Outline.plus class="w-6 h-6" />
+        </.link>
+      </div>
+      <ul :for={trackday <- @trackdays} class="mt-6">
         <li>
           <Card.primary>
             <.link navigate={~p"/users/trackdays/#{trackday.id}"} class="flex justify-between">
