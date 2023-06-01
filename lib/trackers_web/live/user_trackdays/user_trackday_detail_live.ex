@@ -7,7 +7,6 @@ defmodule TrackersWeb.UserTrackdayDetailLive do
 
   def mount(%{"id" => id}, _seeesion, socket) do
     trackday = Trackdays.get_trackday_by_id(id)
-    IO.inspect(trackday)
     {:ok, assign(socket, trackday: trackday)}
   end
 
