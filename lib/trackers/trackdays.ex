@@ -34,4 +34,22 @@ defmodule Trackers.Trackdays do
         limit: 3
     )
   end
+
+  def list_best_laps(user_id) when is_binary(user_id) do
+    Repo.all(
+      from t in Trackday,
+        where: t.user_id == ^user_id,
+        join: l in assoc(t, :layout),
+        join: tr in assoc(l, :track),
+        order_by: t.best_lap,
+        distinct: l.id,
+        select: %{
+          trackday_id: t.id,
+          date: t.date,
+          best_lap: t.best_lap,
+          layout_name: l.name,
+          track_name: tr.name
+        }
+    )
+  end
 end
