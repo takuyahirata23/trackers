@@ -1,5 +1,5 @@
 <.flash_group flash={@flash} />
-<TrackersWeb.Header.live />
+<TrackersWeb.Header.live is_admin={@current_user.is_admin}/>
 <main class="max-w-7xl w-11/12 mx-auto py-8">
   <%= @inner_content %>
 </main>
