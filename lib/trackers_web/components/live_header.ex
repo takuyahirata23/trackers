@@ -38,6 +38,9 @@ defmodule TrackersWeb.Header do
           <li>
             <.link navigate={~p"/"}>Home</.link>
           </li>
+          <li :if={@is_admin}>
+            <.link navigate={~p"/admin/motorcycles"}>Admin</.link>
+          </li>
         </ul>
       </nav>
     </header>

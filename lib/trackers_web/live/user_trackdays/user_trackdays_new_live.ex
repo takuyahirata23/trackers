@@ -74,9 +74,10 @@ defmodule TrackersWeb.UserTrackdaysNewLive do
          |> assign(form: to_form(changeset))}
 
       {:ok, trackday} ->
-        IO.inspect(trackday)
-        form = Trackday.changeset(%Trackday{}) |> to_form()
-        {:noreply, socket |> put_flash(:info, "Saved trackday") |> assign(form: form)}
+        {:noreply,
+         socket
+         |> put_flash(:info, "Saved trackday")
+         |> redirect(to: ~p"/users/trackdays/#{trackday.id}")}
     end
   end
 
