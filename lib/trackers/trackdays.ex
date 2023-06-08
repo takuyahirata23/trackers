@@ -22,4 +22,16 @@ defmodule Trackers.Trackdays do
   def list_all_trackdays(user_id) when is_binary(user_id) do
     Repo.all(from t in Trackday, where: t.user_id == ^user_id, preload: [:layout])
   end
+
+  def list_latest_trackdays(user_id) when is_binary(user_id) do
+    Repo.all(
+      from t in Trackday,
+        where: t.user_id == ^user_id,
+        join: l in assoc(t, :layout),
+        join: tr in assoc(l, :track),
+        order_by: [desc: t.date],
+        select: %{id: t.id, date: t.date, track_name: tr.name},
+        limit: 3
+    )
+  end
 end
