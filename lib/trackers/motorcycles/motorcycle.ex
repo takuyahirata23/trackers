@@ -3,7 +3,7 @@ defmodule Trackers.Motorcycles.Motorcycle do
   import Ecto.Changeset
 
   alias Trackers.Accounts.User
-  alias Trackers.Motorcycles.{Make, Model}
+  alias Trackers.Motorcycles.{Make, Model, Maintenance}
   alias Trackers.Trackdays.Trackday
 
   @primary_key {:id, :binary_id, autogenerate: true}
@@ -17,6 +17,7 @@ defmodule Trackers.Motorcycles.Motorcycle do
     belongs_to :model, Model
 
     has_many :trackdays, Trackday
+    has_many :maintenance, Maintenance
 
     timestamps()
   end
