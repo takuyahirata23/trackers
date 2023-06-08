@@ -12,8 +12,6 @@ defmodule Trackers.Tracks.Layout do
 
     belongs_to :track, Trackers.Tracks.Track
 
-    has_many :fast_laps, Trackers.Laps.FastLap
-
     timestamps()
   end
 
