@@ -34,6 +34,7 @@ defmodule TrackersWeb.UserMotorcycleDetailLive do
           </li>
         </ul>
       </Card.primary>
+      <.back_button url={~p"/users/motorcycles"} label="Motorcycles" />
     </div>
     """
   end

@@ -641,4 +641,18 @@ defmodule TrackersWeb.CoreComponents do
   def translate_errors(errors, field) when is_list(errors) do
     for {^field, {msg, opts}} <- errors, do: translate_error({msg, opts})
   end
+
+  attr :url, :string, required: true
+  attr :label, :string, required: true
+
+  def back_button(assigns) do
+    ~H"""
+    <.link navigate={@url}>
+      <.icon name="hero-arrow-long-left-solid" class="h-6 w-6" />
+      <span>
+        <%= @label %>
+      </span>
+    </.link>
+    """
+  end
 end
