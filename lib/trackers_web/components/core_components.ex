@@ -655,4 +655,15 @@ defmodule TrackersWeb.CoreComponents do
     </.link>
     """
   end
+
+  def forward_button(assigns) do
+    ~H"""
+    <.link navigate={@url}>
+      <span>
+        <%= @label %>
+      </span>
+      <.icon name="hero-arrow-long-right-solid" class="h-6 w-6" />
+    </.link>
+    """
+  end
 end
