@@ -77,6 +77,15 @@ defmodule Trackers.Motorcycles do
     |> Repo.insert()
   end
 
+  def get_latest_maintenace_records(id) when is_binary(id) do
+    Repo.all(
+      from m in Maintenance,
+        where: m.user_id == ^id,
+        order_by: [desc: m.date],
+        limit: 3
+    )
+  end
+
   def get_maintenance_by_id(id) do
     Repo.one(
       from m in Maintenance,
