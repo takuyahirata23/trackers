@@ -10,7 +10,7 @@ defmodule TrackersWeb.UserTrackdaysLive do
       <div class="flex justify-between">
         <h2 class="font-bold text-xl">Trackdays</h2>
         <.link navigate={~p"/users/trackdays/new"} class="block p-2">
-          <Heroicons.Outline.plus class="w-6 h-6" />
+          <.icon name="hero-plus-solid" class="h-6 w-6" />
         </.link>
       </div>
       <ul :for={trackday <- @trackdays} class="mt-6">

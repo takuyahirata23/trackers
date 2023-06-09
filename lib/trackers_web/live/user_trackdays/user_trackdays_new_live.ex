@@ -1,12 +1,13 @@
 defmodule TrackersWeb.UserTrackdaysNewLive do
   use TrackersWeb, :live_view
 
-  alias TrackersWeb.Card
   alias Trackers.Trackdays
   alias Trackers.Trackdays.Trackday
   alias Trackers.Tracks
   alias Trackers.Motorcycles
   alias Trackers.Helpers.Time
+
+  alias TrackersWeb.Card
 
   def render(assigns) do
     ~H"""
@@ -32,7 +33,6 @@ defmodule TrackersWeb.UserTrackdaysNewLive do
             label="Motorcycle"
             required
           />
-          <div></div>
           <.input label="Best lap" field={@form[:best_lap]} placeholder="e.g. 1:23:140" />
           <.input label="Average lap" field={@form[:average_lap]} placeholder="e.g. 1:23:140" />
           <.input label="Note" field={@form[:note]} type="textarea" />

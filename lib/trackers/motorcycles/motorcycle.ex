@@ -17,7 +17,7 @@ defmodule Trackers.Motorcycles.Motorcycle do
     belongs_to :model, Model
 
     has_many :trackdays, Trackday
-    has_many :maintenance, Maintenance
+    has_many :maintenances, Maintenance
 
     timestamps()
   end
