@@ -6,7 +6,7 @@ defmodule Trackers.Motorcycles do
   import Ecto.Query, warn: false
 
   alias Trackers.Repo
-  alias Trackers.Motorcycles.{Make, Model, Motorcycle}
+  alias Trackers.Motorcycles.{Make, Model, Motorcycle, Maintenance}
 
   def register_make(attrs) do
     %Make{}
@@ -67,7 +67,34 @@ defmodule Trackers.Motorcycles do
     Repo.one(
       from m in Motorcycle,
         where: m.user_id == ^user_id and m.id == ^motorcycle_id,
-        preload: [:make, :model]
+        preload: [:make, :model, :maintenances]
+    )
+  end
+
+  def save_maintenance(attrs) do
+    %Maintenance{}
+    |> Maintenance.changeset(attrs)
+    |> Repo.insert()
+  end
+
+  def get_maintenance_by_id(id) do
+    Repo.one(
+      from m in Maintenance,
+        where: m.id == ^id,
+        join: motorcycle in assoc(m, :motorcycle),
+        join: make in assoc(motorcycle, :make),
+        join: model in assoc(motorcycle, :model),
+        select: %{
+          id: m.id,
+          title: m.title,
+          date: m.date,
+          odometer: m.odometer,
+          note: m.note,
+          make: make.name,
+          model: model.name,
+          year: motorcycle.year,
+          motorcycle_id: motorcycle.id
+        }
     )
   end
 end

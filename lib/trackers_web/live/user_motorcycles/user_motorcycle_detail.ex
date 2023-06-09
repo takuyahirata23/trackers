@@ -3,12 +3,38 @@ defmodule TrackersWeb.UserMotorcycleDetailLive do
 
   alias TrackersWeb.Card
   alias Trackers.Motorcycles
-  # alias Trackers.Motorcycles.Motorcycle
 
   def render(assigns) do
     ~H"""
-    <Card.primary title={"#{@motorcycle.make.name} #{@motorcycle.model.name} (#{@motorcycle.year})"}>
-    </Card.primary>
+    <div class="flex flex-col gap-y-8">
+      <Card.primary title={"#{@motorcycle.make.name} #{@motorcycle.model.name}"} margin_bottom={false}>
+        <:action>
+          <span class="text-sm"><%= @motorcycle.year %></span>
+        </:action>
+      </Card.primary>
+      <Card.primary title="Maintenace Record">
+        <:action>
+          <.link navigate={~p"/users/motorcycles/#{@motorcycle.id}/maintenances/new"}>
+            <.icon name="hero-plus-solid" class="h-6 w-6" />
+          </.link>
+        </:action>
+        <ul :if={!Enum.empty?(@motorcycle.maintenances)}>
+          <li :for={maintenance <- @motorcycle.maintenances}>
+            <.link
+              navigate={~p"/users/motorcycles/#{@motorcycle.id}/maintenances/#{maintenance.id}"}
+              class="flex justify-between gap-x-4"
+            >
+              <span>
+                <%= maintenance.title %>
+              </span>
+              <span>
+                <%= maintenance.date %>
+              </span>
+            </.link>
+          </li>
+        </ul>
+      </Card.primary>
+    </div>
     """
   end
 

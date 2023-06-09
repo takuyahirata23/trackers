@@ -15,6 +15,7 @@ defmodule Trackers.Accounts.User do
 
     has_many :motorcycles, Trackers.Motorcycles.Motorcycle
     has_many :trackdays, Trackers.Trackdays.Trackday
+    has_many :maintenance, Trackers.Motorcycles.Maintenance
 
     timestamps()
   end
