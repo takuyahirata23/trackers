@@ -28,12 +28,10 @@ defmodule TrackersWeb.UserMotorcycleMaintenanceDetailLive do
           <%= @maintenance.note %>
         </p>
       </Card.primary>
-      <.link navigate={~p"/users/motorcycles/#{@maintenance.motorcycle_id}"}>
-        <.icon name="hero-arrow-long-left-solid" class="h-6 w-6" />
-        <span>
-          <%= "#{@maintenance.make} - #{@maintenance.model}" %>
-        </span>
-      </.link>
+      <.back_button
+        url={~p"/users/motorcycles/#{@maintenance.motorcycle_id}"}
+        label={"#{@maintenance.make} - #{@maintenance.model}" }
+      />
     </div>
     """
   end
