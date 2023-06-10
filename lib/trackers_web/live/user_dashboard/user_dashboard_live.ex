@@ -66,7 +66,8 @@ defmodule TrackersWeb.UserDashboardLive do
      assign(socket,
        latest_trackdays: latest_trackdays,
        best_laps: best_laps,
-       latest_maintenance_records: latest_maintenance_records
+       latest_maintenance_records: latest_maintenance_records,
+       page_title: "Dashboard"
      )}
   end
 end
