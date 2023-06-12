@@ -33,8 +33,8 @@ defmodule TrackersWeb.UserTrackdaysNewLive do
             label="Motorcycle"
             required
           />
-          <.input label="Best lap" field={@form[:best_lap]} placeholder="e.g. 1:23:140" />
-          <.input label="Average lap" field={@form[:average_lap]} placeholder="e.g. 1:23:140" />
+          <.input label="Best lap" field={@form[:best_lap]} placeholder="e.g. 1:23:14" />
+          <.input label="Average lap" field={@form[:average_lap]} placeholder="e.g. 1:23:14" />
           <.input label="Note" field={@form[:note]} type="textarea" />
           <.input field={@form[:user_id]} type="hidden" value={@current_user.id} />
           <:actions>
