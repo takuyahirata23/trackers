@@ -15,12 +15,12 @@ defmodule TrackersWeb.UserTrackdaysLive do
       </div>
       <ul :for={trackday <- @trackdays} class="mt-6">
         <li>
-          <Card.primary>
+          <Card.primary margin_bottom={false}>
             <.link navigate={~p"/users/trackdays/#{trackday.id}"} class="flex justify-between">
-              <span>
+              <span class="font-bold">
                 <%= "#{trackday.layout.name}" %>
               </span>
-              <span>
+              <span class="text-sm">
                 <%= "#{trackday.date}" %>
               </span>
             </.link>
